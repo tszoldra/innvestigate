@@ -224,7 +224,7 @@ class GaussianSmoother(AugmentReduceBase):
 
     def _augment(self, Xs: OptionalList[Tensor]) -> list[Tensor]:
         repeat = ilayers.Repeat(self._augment_by_n)
-        add_noise = ilayers.AddGaussianNoise()
+        add_noise = ilayers.AddGaussianNoise(stddev=self._noise_scale)
         reshape = ilayers.AugmentationToBatchAxis(self._augment_by_n)
 
         ret = [reshape(add_noise(repeat(X))) for X in ibackend.to_list(Xs)]
