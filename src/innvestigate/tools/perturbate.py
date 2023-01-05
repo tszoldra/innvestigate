@@ -184,14 +184,14 @@ class Perturbation:
             perturbation_mask_regions.shape
         ):
             region = x_perturbated[
-                sample_idx, channel_idx, region_row, :, region_col, :
+                sample_idx, :, region_row, :, region_col, :
             ]
             region_mask = perturbation_mask_regions[
                 sample_idx, channel_idx, region_row, region_col
             ]
             if region_mask:
                 x_perturbated[
-                    sample_idx, channel_idx, region_row, :, region_col, :
+                    sample_idx, :, region_row, :, region_col, :
                 ] = self.perturbation_function(region)
 
                 if self.value_range is not None:
